@@ -1,13 +1,12 @@
 // TODO: Create an interface for the Candidate objects returned by the API
 
-interface Candidate {
-    id: number;
+export interface Candidate {
     name: string;
-    email: string;
+    username: string;
     age: number;
-    skills: string[];
+    location: string;
     avatar: string;
-    video: string;
-    resume: string;
-    status: 'pending' | 'approved' | 'rejected';
+    email: string;
+    html_url: string;
+    company: string;
 }
