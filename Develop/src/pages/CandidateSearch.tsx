@@ -18,9 +18,11 @@ const CandidateSearch = () => {
 
   const handleSearch = () => {
       searchGithubUser(searchTerm).then((data) => {
-      setSearchResults(data);
-    });
-  };
+      setSearchResults(Array.isArray(data) ? data : [data]);
+      }).catch(error => {
+        console.error('Error fetching user:', error);
+      });
+    };
 
   return (
     <div>  
@@ -32,8 +34,8 @@ const CandidateSearch = () => {
         />
         <button onClick={handleSearch}>Search</button>
       <ul>
-        {searchResults.map((result, index) => (
-          <li key={index}>{result.name}</li>       
+        {Array.isArray(searchResults) && searchResults.map((result, index) => (
+          <li key={index}>{result.name}</li>   
         ))}
       </ul>
     </div>
