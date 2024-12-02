@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { searchGithub, searchGithubUser } from '../api/API';
 
 const CandidateSearch = () => {
@@ -12,37 +12,28 @@ const CandidateSearch = () => {
     });
   }, []);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    searchGithubUser(searchTerm).then((data) => {
+  const handleSearch = () => {
+      searchGithubUser(searchTerm).then((data) => {
       setSearchResults(data);
     });
   };
 
   return (
-    <div>
-      <h1>Candidate Search</h1>
-      <form onSubmit={handleSubmit}>
+    <div>  
         <input
           type="text"
-          placeholder="Search for a candidate"
           value={searchTerm}
           onChange={handleChange}
+          placeholder="Search for a candidate"     
         />
-        <button type="submit">Search</button>
-      </form>
+        <button onClick={handleSearch}>Search</button>
       <ul>
-        {searchResults.map((candidate) => (
-          <li key={candidate.id}>
-            <img src={candidate.avatar} alt={candidate.name} />
-            <h2>{candidate.name}</h2>
-            <p>{candidate.location}</p>
-            <a href={candidate.html_url}>Github Profile</a>
-          </li>
+        {searchResults.map((result, index) => (
+          <li key={index}></li>       
         ))}
       </ul>
     </div>
