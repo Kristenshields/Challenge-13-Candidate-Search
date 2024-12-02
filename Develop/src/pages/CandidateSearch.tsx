@@ -4,7 +4,7 @@ import { searchGithub, searchGithubUser } from '../api/API';
 const CandidateSearch = () => {
   const [candidates, setCandidates] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState<any[]>([]);
 
   useEffect(() => {
     searchGithub().then((data) => {
@@ -33,7 +33,7 @@ const CandidateSearch = () => {
         <button onClick={handleSearch}>Search</button>
       <ul>
         {searchResults.map((result, index) => (
-          <li key={index}></li>       
+          <li key={index}>{result.name}</li>       
         ))}
       </ul>
     </div>
