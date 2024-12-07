@@ -2,25 +2,25 @@ import { useState, useEffect } from 'react';
 import { Candidate } from '../interfaces/Candidate.interface';
 
 const SavedCandidates = () => {
-    const [candidates, setCandidates] = useState<Candidate[]>([]);
+  const [candidates, setCandidates] = useState<Candidate[]>([]);
 
-    useEffect(() => {
-      const candidates = JSON.parse(localStorage.getItem('savedCandidates') || '[]');
-      setCandidates(candidates);
+  useEffect(() => {
+    const candidates = JSON.parse(localStorage.getItem('savedCandidates') || '[]');
+    setCandidates(candidates);
 
-    }, []);
+  }, []);
 
-    const deleteCandidate = (login: string) => {
-      const updatedCandidates = candidates.filter(
-        (candidate) => candidate.login !== login
-      );
-      setCandidates(updatedCandidates);
-      localStorage.setItem('savedCandidates', JSON.stringify(updatedCandidates));
-    };
+  const deleteCandidate = (login: string) => {
+    const updatedCandidates = candidates.filter(
+      (candidate) => candidate.login !== login
+    );
+    setCandidates(updatedCandidates);
+    localStorage.setItem('savedCandidates', JSON.stringify(updatedCandidates));
+  };
 
-    return (
-      <div className="container py-5">
-      <h1 className="mb-4 text-center text-primary">Saved Candidates</h1>
+  return (
+    <div className="container py-5">
+      <h1 className="mb-4 text-center text-white">Saved Candidates</h1>
       {candidates.length === 0 ? (
         <p className="text-center">No saved candidates yet.</p>
       ) : (
@@ -50,7 +50,7 @@ const SavedCandidates = () => {
                   </td>
                   <td>{candidate.login}</td>
                   <td>{candidate.location || "No location available."}</td>
-                  <td>
+                  <td style={{ wordWrap: "break-word", maxWidth: "200px" }}>
                     <a href={`mailto:${candidate.email}`} className="text-decoration-none">
                       {candidate.email || "No email available."}
                     </a>
@@ -62,7 +62,7 @@ const SavedCandidates = () => {
                       className="btn btn-sm btn-danger"
                       onClick={() => deleteCandidate(candidate.login)}
                     >
-                      <i className="bi bi-trash"></i> Delete
+                      <i className="bi bi-trash"></i> <strong>DELETE</strong>
                     </button>
                   </td>
                 </tr>
@@ -72,9 +72,8 @@ const SavedCandidates = () => {
         </div>
       )}
     </div>
-    );
-  };
-   
-   
-  export default SavedCandidates;
-  
+  );
+};
+
+
+export default SavedCandidates;

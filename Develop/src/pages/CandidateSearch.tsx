@@ -52,9 +52,8 @@ const CandidateSearch = () => {
   return (
 
     <div
-      className="vh-100 d-flex flex-column justify-content-center align-items-center text-white"
-      style={{}}
-    >
+      className="vh-100 d-flex flex-column justify-content-center align-items-center text-white">
+      <h1 className="mb-4 text-center text-white">Saved Candidates</h1>
       {/* Error or Loading */}
       {isLoading && <p>Loading...</p>}
       {error && <p className="text-danger">{error}</p>}
