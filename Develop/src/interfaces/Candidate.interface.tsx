@@ -10,4 +10,5 @@ export interface Candidate {
     email: string;
     location: string;
     company: string;
+    image: string;
 }
