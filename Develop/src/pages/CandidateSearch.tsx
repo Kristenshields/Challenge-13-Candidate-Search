@@ -84,7 +84,7 @@ const CandidateSearch = () => {
               {candidate.name} <span className="fw-light">({candidate.login})</span>
             </h5>
             <p className="card-text">
-              <strong>Location:</strong> {candidate.location || "N/A"}
+              <strong>Location:</strong> {candidate.location || "No location available."}
             </p>
             <p className="card-text">
               <strong>Email:</strong>{" "}
@@ -97,7 +97,7 @@ const CandidateSearch = () => {
               )}
             </p>
             <p className="card-text">
-              <strong>Company:</strong> {candidate.company || "N/A"}
+              <strong>Company:</strong> {candidate.company || "No company available."}
             </p>
             <p className="card-text">
               <strong>Bio:</strong> {candidate.bio || "No bio available."}
