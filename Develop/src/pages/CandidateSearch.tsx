@@ -50,10 +50,10 @@ const CandidateSearch = () => {
   }, []);
 
   return (
-  
+
     <div
       className="vh-100 d-flex flex-column justify-content-center align-items-center text-white"
-      style={{  }}
+      style={{}}
     >
       {/* Error or Loading */}
       {isLoading && <p>Loading...</p>}
@@ -61,16 +61,18 @@ const CandidateSearch = () => {
 
       {/* Candidate Card */}
       {candidate && (
-        <div className="card text-left" style={{ width: "18rem", border: "none",}}>
+        <div className="card text-left" style={{ width: "18rem", border: "none", background: "none", }}>
           <img
             src={candidate.avatar_url || '/path/to/default-avatar.png'}  // Fallback URL if avatar_url is missing
-            className="card-img-top rounded-top"
+            className="card-img-top"
             alt={`${candidate.name}'s avatar`}
-            style={{ width: '100%', height: 'auto' }} // Ensure image is responsive
+            style={{ borderTopLeftRadius: "20px", borderTopRightRadius: "20px", width: '100%', height: 'auto' }} // Ensure image is responsive
           />
-          <div className="card-body bg-dark text-white rounded-bottom">
+          <div className="card-body bg-dark text-white"
+            style={{ borderBottomLeftRadius: "20px", borderBottomRightRadius: "20px", }}>
+
             <h5 className="card-title">
-              {candidate.name} <span className="fw-light">({candidate.login})</span>
+              <span className="fw-bold"> {candidate.name}</span> <span className="fw-bold">({candidate.login})</span>
             </h5>
             <p className="card-text">
               <strong>Location:</strong> {candidate.location || "No location available."}
@@ -97,22 +99,27 @@ const CandidateSearch = () => {
 
       {/* Buttons */}
       {candidate && (
-        <div className="d-flex gap-3 mt-4">
+        <div
+          className="d-flex mt-4"
+          style={{
+            gap: "10rem", // Adjust the value to your preference
+          }}
+        >
           <button
             type="button"
             className="btn btn-danger rounded-circle p-2"
-            style={{ width: "5rem", height: "rem" }}
+            style={{ width: "5rem", height: "5rem", display: "flex", justifyContent: "center", alignItems: "center" }}
             onClick={fetchCandidate}
           >
-            -
+            <span style={{ color: "black", fontSize: "3rem", fontWeight: "bold", }}>-</span>
           </button>
           <button
             type="button"
             className="btn btn-success rounded-circle p-2"
-            style={{ width: "5rem", height: "5rem", }}
+            style={{ width: "5rem", height: "5rem", display: "flex", justifyContent: "center", alignItems: "center" }}
             onClick={saveCandidate}
           >
-            +
+            <span style={{ color: "black", fontSize: "3rem", fontWeight: "bold", }}>+</span>
           </button>
         </div>
       )}
