@@ -15,7 +15,6 @@ const CandidateSearch = () => {
       if (!Array.isArray(candidates) || candidates.length === 0) {
         setError("No candidates available or invalid API response.");
         setIsLoading(false);
-        setIsLoading(false);
         return;
       }
 
@@ -25,7 +24,7 @@ const CandidateSearch = () => {
         setCandidate(candidateData);
       } catch (error: any) {
         if (error.response && error.response.status === 404) {
-          setError("Candidate not found.");
+          setError(`Candidate with username ${candidates[0].login} not found.`);
         } else {
           setError("An error occurred while fetching the candidate.");
         }
@@ -45,29 +44,29 @@ const CandidateSearch = () => {
     localStorage.setItem('savedCandidates', JSON.stringify(savedCandidates));
     fetchCandidate();
   };
-  
+
   useEffect(() => {
     fetchCandidate();
   }, []);
 
   return (
+  
     <div
       className="vh-100 d-flex flex-column justify-content-center align-items-center text-white"
-      style={{ background: "linear-gradient(to bottom, #001f3f, #001a36)" }}
+      style={{  }}
     >
       {/* Error or Loading */}
       {isLoading && <p>Loading...</p>}
       {error && <p className="text-danger">{error}</p>}
 
-    
-
       {/* Candidate Card */}
       {candidate && (
-        <div className="card text-center" style={{ width: "18rem", border: "none" }}>
+        <div className="card text-left" style={{ width: "18rem", border: "none",}}>
           <img
-            src={candidate.avatar_url}
-            className="card-img-top bg-light p-3"
-            alt={candidate.name}
+            src={candidate.avatar_url || '/path/to/default-avatar.png'}  // Fallback URL if avatar_url is missing
+            className="card-img-top rounded-top"
+            alt={`${candidate.name}'s avatar`}
+            style={{ width: '100%', height: 'auto' }} // Ensure image is responsive
           />
           <div className="card-body bg-dark text-white rounded-bottom">
             <h5 className="card-title">
@@ -83,7 +82,7 @@ const CandidateSearch = () => {
                   {candidate.email}
                 </a>
               ) : (
-                "N/A"
+                "No email available."
               )}
             </p>
             <p className="card-text">
@@ -102,16 +101,15 @@ const CandidateSearch = () => {
           <button
             type="button"
             className="btn btn-danger rounded-circle p-2"
-            style={{ width: "3rem", height: "3rem" }}
+            style={{ width: "5rem", height: "rem" }}
             onClick={fetchCandidate}
-
           >
             -
           </button>
           <button
             type="button"
             className="btn btn-success rounded-circle p-2"
-            style={{ width: "3rem", height: "3rem" }}
+            style={{ width: "5rem", height: "5rem", }}
             onClick={saveCandidate}
           >
             +

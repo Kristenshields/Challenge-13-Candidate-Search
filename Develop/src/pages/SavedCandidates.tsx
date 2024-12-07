@@ -25,7 +25,7 @@ const SavedCandidates = () => {
         <p className="text-center">No saved candidates yet.</p>
       ) : (
         <div className="table-responsive">
-          <table className="table table-striped table-hover align-middle">
+          <table className="table table-dark table-striped table-hover table-bordered align-middle">
             <thead className="table-dark">
               <tr>
                 <th scope="col">Image</th>
@@ -34,7 +34,7 @@ const SavedCandidates = () => {
                 <th scope="col">Email</th>
                 <th scope="col">Company</th>
                 <th scope="col">Bio</th>
-                <th scope="col">Action</th>
+                <th scope="col">Reject</th>
               </tr>
             </thead>
             <tbody>
@@ -42,21 +42,21 @@ const SavedCandidates = () => {
                 <tr key={candidate.login}>
                   <td>
                     <img
-                      src={candidate.image}
+                      src={candidate.avatar_url}
                       alt={`${candidate.name}'s avatar`}
                       className="img-thumbnail"
                       style={{ width: "50px", height: "50px", objectFit: "cover" }}
                     />
                   </td>
-                  <td>{candidate.name}</td>
-                  <td>{candidate.location}</td>
+                  <td>{candidate.login}</td>
+                  <td>{candidate.location || "No location available."}</td>
                   <td>
                     <a href={`mailto:${candidate.email}`} className="text-decoration-none">
-                      {candidate.email}
+                      {candidate.email || "No email available."}
                     </a>
                   </td>
-                  <td>{candidate.company}</td>
-                  <td>{candidate.bio}</td>
+                  <td>{candidate.company || "No company available."}</td>
+                  <td>{candidate.bio || "No bio available."}</td>
                   <td>
                     <button
                       className="btn btn-sm btn-danger"
