@@ -22,7 +22,7 @@ const SavedCandidates = () => {
       <div className="container py-5">
       <h1 className="mb-4 text-center text-primary">Saved Candidates</h1>
       {candidates.length === 0 ? (
-        <p className="text-center text-muted">No saved candidates yet.</p>
+        <p className="text-center">No saved candidates yet.</p>
       ) : (
         <div className="table-responsive">
           <table className="table table-striped table-hover align-middle">

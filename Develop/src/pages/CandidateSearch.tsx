@@ -104,6 +104,7 @@ const CandidateSearch = () => {
             className="btn btn-danger rounded-circle p-2"
             style={{ width: "3rem", height: "3rem" }}
             onClick={fetchCandidate}
+
           >
             -
           </button>
