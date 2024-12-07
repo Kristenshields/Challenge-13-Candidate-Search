@@ -59,17 +59,7 @@ const CandidateSearch = () => {
       {isLoading && <p>Loading...</p>}
       {error && <p className="text-danger">{error}</p>}
 
-      {/* Header */}
-      <header className="position-absolute top-0 start-0 m-3">
-        <nav className="d-flex gap-3">
-          <a href="/" className="text-white text-decoration-none">
-            Home
-          </a>
-          <a href="/saved-candidates" className="text-white text-decoration-none">
-            Saved Candidates
-          </a>
-        </nav>
-      </header>
+    
 
       {/* Candidate Card */}
       {candidate && (
