@@ -15,6 +15,7 @@ const CandidateSearch = () => {
       if (!Array.isArray(candidates) || candidates.length === 0) {
         setError("No candidates available or invalid API response.");
         setIsLoading(false);
+        setIsLoading(false);
         return;
       }
 
@@ -57,6 +58,7 @@ const CandidateSearch = () => {
         <div>
           <h1>{candidate.name}</h1>
           <p>{candidate.bio}</p>
+          <button onClick={fetchCandidate}>Next Candidate</button>
           <button onClick={saveCandidate}>Save Candidate</button>
         </div>
       )}
