@@ -18,7 +18,19 @@ const SavedCandidates = () => {
       localStorage.setItem('savedCandidates', JSON.stringify(updatedCandidates));
     };
 
-    return { candidates, setCandidates, deleteCandidate };
+    return (
+      <div>
+        <h1>Saved Candidates</h1>
+        <ul>
+          {candidates.map((candidate) => (
+            <li key={candidate.login}>
+              {candidate.name} ({candidate.login})
+              <button onClick={() => deleteCandidate(candidate.login)}>Delete</button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
   };
 
    

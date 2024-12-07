@@ -19,9 +19,17 @@ const CandidateSearch = () => {
       }
 
       const login = candidates[0].login;
-      const candidateData = await searchGithubUser(login);
-      setCandidate(candidateData);
-    } catch (error) {
+      try {
+        const candidateData = await searchGithubUser(login);
+        setCandidate(candidateData);
+      } catch (error: any) {
+        if (error.response && error.response.status === 404) {
+          setError("Candidate not found.");
+        } else {
+          setError("An error occurred while fetching the candidate.");
+        }
+      }
+    } catch (error: any) {
       setError("An error occurred while fetching the candidate.");
     } finally {
       setIsLoading(false);
