@@ -12,8 +12,8 @@ const CandidateSearch = () => {
     setError(null);
     try {
       const candidates = await searchGithub();
-      if (candidates.length === 0) {
-        setError("No candidates available.");
+      if (!Array.isArray(candidates) || candidates.length === 0) {
+        setError("No candidates available or invalid API response.");
         setIsLoading(false);
         return;
       }
@@ -49,7 +49,19 @@ const CandidateSearch = () => {
     fetchCandidate();
   }, []);
 
-  return {candidate, isLoading, error, fetchCandidate, saveCandidate};
+  return (
+    <div>
+      {isLoading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
+      {candidate && (
+        <div>
+          <h1>{candidate.name}</h1>
+          <p>{candidate.bio}</p>
+          <button onClick={saveCandidate}>Save Candidate</button>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default CandidateSearch;
