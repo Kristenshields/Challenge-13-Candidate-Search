@@ -2,12 +2,25 @@ import { useState, useEffect } from 'react';
 import { Candidate } from '../interfaces/Candidate.interface';
 
 const SavedCandidates = () => {
-    return (
-      <>
-        <h1>Potential Candidates</h1>
-      </>
-    );
+    const [candidates, setCandidates] = useState<Candidate[]>([]);
+
+    useEffect(() => {
+      const candidates = JSON.parse(localStorage.getItem('savedCandidates') || '[]');
+      setCandidates(candidates);
+
+    }, []);
+
+    const deleteCandidate = (login: string) => {
+      const updatedCandidates = candidates.filter(
+        (candidate) => candidate.login !== login
+      );
+      setCandidates(updatedCandidates);
+      localStorage.setItem('savedCandidates', JSON.stringify(updatedCandidates));
+    };
+
+    return { candidates, setCandidates, deleteCandidate };
   };
-  
+
+   
   export default SavedCandidates;
   

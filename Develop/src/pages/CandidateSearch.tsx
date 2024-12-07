@@ -18,6 +18,7 @@ const CandidateSearch = () => {
         return;
       }
 
+      const login = candidates[0].login;
       const candidateData = await searchGithubUser(login);
       setCandidate(candidateData);
     } catch (error) {
@@ -30,7 +31,7 @@ const CandidateSearch = () => {
   const saveCandidate = () => {
     if (!candidate) return;
 
-    const savedCandidates == JSON.parse(localStorage.getItem('savedCandidates') || '[]');
+    const savedCandidates: Candidate[] = JSON.parse(localStorage.getItem('savedCandidates') || '[]');
     savedCandidates.push(candidate);
     localStorage.setItem('savedCandidates', JSON.stringify(savedCandidates));
     fetchCandidate();
@@ -42,17 +43,5 @@ const CandidateSearch = () => {
 
   return {candidate, isLoading, error, fetchCandidate, saveCandidate};
 };
-
-const CandidateSearch = () => {
-  const { candidate, isLoading, error, fetchCandidate, saveCandidate } = useCandidateSearch();
-
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
-
-};
-
-
-  
-
 
 export default CandidateSearch;
