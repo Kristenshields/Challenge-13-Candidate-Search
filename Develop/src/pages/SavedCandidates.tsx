@@ -19,19 +19,33 @@ const SavedCandidates = () => {
     };
 
     return (
-      <div>
-        <h1>Saved Candidates</h1>
-        <ul>
+<div className="container py-5">
+      <h1 className="mb-4 text-center">Saved Candidates</h1>
+      {candidates.length === 0 ? (
+        <p className="text-center">No saved candidates yet.</p>
+      ) : (
+        <ul className="list-group">
           {candidates.map((candidate) => (
-            <li key={candidate.login}>
-              {candidate.name} ({candidate.login})
-              <button onClick={() => deleteCandidate(candidate.login)}>Delete</button>
+            <li
+              key={candidate.login}
+              className="list-group-item d-flex justify-content-between align-items-center"
+            >
+              <div>
+                <strong>{candidate.name}</strong> ({candidate.login})
+              </div>
+              <button
+                className="btn btn-sm btn-danger"
+                onClick={() => deleteCandidate(candidate.login)}
+              >
+                Delete
+              </button>
             </li>
           ))}
         </ul>
-      </div>
-    );
-  };
+      )}
+    </div>
+  );
+};
 
    
   export default SavedCandidates;

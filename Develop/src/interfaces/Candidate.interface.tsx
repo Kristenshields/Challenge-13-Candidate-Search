@@ -7,4 +7,7 @@ export interface Candidate {
     avatar_url: string;
     html_url: string;
     bio: string;
+    email: string;
+    location: string;
+    company: string;
 }
